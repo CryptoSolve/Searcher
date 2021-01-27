@@ -1,0 +1,125 @@
+﻿<Window x:Class="Searcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Searcher"
+        mc:Ignorable="d"
+        Title="Searcher" Height="900" Width="1400">
+    <Grid>
+        <TreeView
+            x:Name="DirectoriesTree"
+            VirtualizingStackPanel.IsVirtualizing="True"
+            VirtualizingStackPanel.VirtualizationMode="Recycling"
+            Margin="0,60"
+            Height="820" Width="1400">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                    <Label Content="{Binding Content}"/>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <TextBlock
+            x:Name="CurrentDirectoryHeader"
+            Height="30"
+            Width="200"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Поиск сейчас идет в: "
+            TextAlignment="Justify"
+            FontSize="20"></TextBlock>
+        <TextBlock
+            x:Name="CurrentDirectory"
+            Height="30"
+            Width="1200"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="LightSteelBlue"
+            Text=""
+            Foreground="Green"
+            TextAlignment="Left"
+            FontSize="20" Margin="200,0,0,0"/>
+        <Button
+            x:Name="Search"
+            Height="30"
+            Width="100"
+            Content="Искать"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Right"
+            Margin="200, 30"
+            FontSize="20"
+            FontWeight="Bold"
+            Click="Search_Click"></Button>
+        <Button
+            x:Name="Pause"
+            Height="30" Width="120"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Right"
+            FontSize="17"
+            FontWeight="Bold"
+            Margin="80,30"
+            Content="Остановить"
+            IsEnabled="False"
+            Click="Pause_Click"></Button>
+        <TextBlock
+            x:Name="TimeBox"
+            Height="30" Width="80" VerticalAlignment="Top" HorizontalAlignment="Right"
+            Margin="0, 30"
+            Text="00:00" FontSize="20" TextAlignment="Center"/>
+        <TextBlock
+            x:Name="ScanedFiles"
+            Height="30" Width="250" VerticalAlignment="Top" HorizontalAlignment="Right"
+            Margin="40, 60"
+            Text="{Binding FoundFiles, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" FontSize="20" TextAlignment="Left"/>
+        <TextBlock
+            x:Name="MatchedFiles"
+            Height="30" Width="250" VerticalAlignment="Top" HorizontalAlignment="Right"
+            Margin="40, 90"
+            Text="{Binding FoundFiles, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" FontSize="20" TextAlignment="Left"/>
+        <TextBox
+            x:Name="RootFolderInputField"
+            Height="30"
+            Width="400"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Margin="0, 30"
+            FontStyle="Normal"
+            FontSize="17"
+            Text=""
+            >
+        </TextBox>
+        <TextBox
+            x:Name="RegexPatternInputField"
+            Height="30"
+            Width="400"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Margin="400, 30"
+            FontStyle="Normal"
+            FontSize="17"
+            Text=""
+            ></TextBox>
+        <Button 
+            x:Name="RegexPatternInputFieldOverlap"
+            Height="30"
+            Width="400"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Margin="400, 30"
+            FontStyle="Italic"
+            FontSize="17"
+            Content="Введите регулярное выражение"
+            Click="RegexPatternInputFieldOverlap_Click"></Button>
+        <Button 
+            x:Name="RootFolderInputFieldOverlap"
+            Height="30"
+            Width="400"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Margin="0, 30"
+            FontStyle="Italic"
+            FontSize="17"
+            Content="Введите корневую папку"
+            Click="RootFolderInputFieldOverlap_Click"></Button>
+    </Grid>
+</Window>
